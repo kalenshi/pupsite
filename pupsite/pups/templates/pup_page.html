@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block body %}
+    <div class="container">
+        <article class="page-article">
+            <h1>{{ pup.name }}</h1>
+
+            <div class="card mb-2">
+                <h5 class="card-header text-center">{{ pup.name or "Bingo" }}</h5>
+                <div class="card-body">
+                    <h5 class="card-title">{{ pup.breed or "German Shepherd" }}</h5>
+                    <p class="card-text">{{ pup.details }}</p>
+                    <a href="{{ url_for('pupsblueprint.pup_page', pup_id=pup.id) }}" class="btn btn-secondary">
+                        Update Details
+                    </a>
+                    <button class="btn btn-danger"
+                            data-bs-toggle="modal" data-bs-target="#deletePupModal">Delete This Pup
+                    </button>
+                </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="deletePupModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to Delete This
+                                Pup?</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            ...
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <form action="{{ url_for('pupsblueprint.delete_pup', pup_id=pup.id) }}" method="POST">
+                                <input class="btn btn-danger" type="submit" value="Save Changes"/>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+{% endblock body %}

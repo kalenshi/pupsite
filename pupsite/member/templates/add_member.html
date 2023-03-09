@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block body %}
+    <div class="container">
+        <article class="page-article">
+
+            <form action="" method="POST">
+                {{ add_form.hidden_tag() }}
+                <fieldset>
+                    <legend>Add a New Pup Owner</legend>
+                    <div class="form-group mb-3">
+                        {{ add_form.name.label(class="col-sm-2 col-form-label") }}
+                        {{ add_form.name(class="form-control form-control-md col col-lg-2") }}
+                    </div>
+                    <div class="form-group">
+                        {{ add_form.email.label(class="col-sm-2 col-form-label") }}
+                        {{ add_form.email(class="form-control form-control-md col col-lg-2") }}
+                    </div>
+                    <div class="form-group">
+                        {{ add_form.verify_email.label(class="col-sm-2 col-form-label") }}
+                        {{ add_form.verify_email(class="form-control form-control-md col col-lg-2") }}
+                    </div>
+                    {{ add_form.submit(class="btn btn-primary mt-2 mb-2") }}
+                </fieldset>
+            </form>
+        </article>
+    </div>
+{% endblock body %}

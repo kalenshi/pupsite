@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block body %}
+    <div class="container">
+        <article class="page-article">
+            <h1>Welcome to our Adoption Page</h1>
+            <p class="text-center">Please select one of the links from the nav bar.</p>
+        </article>
+        <img src="{{ url_for('static', filename='images/default.jpg') }}"
+             class="rounded mx-auto d-block img-fluid center" alt="Our front end welcome pic">
+    </div>
+{% endblock body %}
