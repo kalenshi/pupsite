@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import SubmitField, StringField, IntegerField, TextAreaField, SelectField
+from wtforms import (SubmitField, StringField, IntegerField, TextAreaField, SelectField, FileField)
 from wtforms.validators import Length, NumberRange, ValidationError
 
 from pupsite import db
@@ -15,6 +15,7 @@ class AddPupForm(FlaskForm):
     age = IntegerField(label="Age", validators=[NumberRange(min=1, max=20)])
     details = TextAreaField(label="Details")
     owner = SelectField(label="Owner", choices=[1, 2])
+    picture = FileField(label="Picture", validators=[])
     submit = SubmitField(label="Add Pup")
 
     def validate_owner(self, owner):

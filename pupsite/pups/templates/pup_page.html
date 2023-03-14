@@ -8,7 +8,15 @@
                 <h5 class="card-header text-center">{{ pup.name or "Bingo" }}</h5>
                 <div class="card-body">
                     <h5 class="card-title">{{ pup.breed or "German Shepherd" }}</h5>
-                    <p class="card-text">{{ pup.details }}</p>
+                    <div class="row">
+                        <div class="col-8">
+                            <p class="card-text">{{ pup.details }}</p>
+                        </div>
+                        <div class="col">
+                            <img class="col-4" src="{{ url_for('static', filename='images/'+pup.picture) }}"
+                                 alt="puppy image"/>
+                        </div>
+                    </div>
                     <a href="{{ url_for('pupsblueprint.pup_page', pup_id=pup.id) }}" class="btn btn-secondary">
                         Update Details
                     </a>

@@ -8,17 +8,84 @@
                 <fieldset>
                     <legend>Add a New Pup Owner</legend>
                     <div class="form-group mb-3">
-                        {{ add_form.name.label(class="col-sm-2 col-form-label") }}
-                        {{ add_form.name(class="form-control form-control-md col col-lg-2") }}
+                        {{ add_form.first_name.label(class="col-sm-2 col-form-label") }}
+                        {% if add_form.first_name.errors %}
+                            {{ add_form.first_name(class="form-control form-control-md col col-lg-2 is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in add_form.first_name.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ add_form.first_name(class="form-control form-control-md col col-lg-2") }}
+                        {% endif %}
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mb-3">
+                        {{ add_form.last_name.label(class="col-sm-2 col-form-label") }}
+                        {% if add_form.last_name.errors %}
+                            {{ add_form.last_name(class="form-control form-control-md col col-lg-2 is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in add_form.last_name.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ add_form.last_name(class="form-control form-control-md col col-lg-2") }}
+                        {% endif %}
+                    </div>
+                    <div class="form-group mb-3">
                         {{ add_form.email.label(class="col-sm-2 col-form-label") }}
-                        {{ add_form.email(class="form-control form-control-md col col-lg-2") }}
+                        {% if add_form.email.errors %}
+                            {{ add_form.email(class="form-control form-control-md col col-lg-2 is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in add_form.email.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ add_form.email(class="form-control form-control-md col col-lg-2") }}
+                        {% endif %}
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mb-3">
                         {{ add_form.verify_email.label(class="col-sm-2 col-form-label") }}
-                        {{ add_form.verify_email(class="form-control form-control-md col col-lg-2") }}
+                        {% if add_form.verify_email.errors %}
+                            {{ add_form.name(class="form-control form-control-md col col-lg-2 is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in add_form.verify_email.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ add_form.verify_email(class="form-control form-control-md col col-lg-2") }}
+                        {% endif %}
                     </div>
+                    <div class="form-group mb-3">
+                        {{ add_form.password.label(class="col-sm-2 col-form-label") }}
+                        {% if add_form.password.errors %}
+                            {{ add_form.password(class="form-control form-control-md col col-lg-2 is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in add_form.name.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ add_form.password(class="form-control form-control-md col col-lg-2") }}
+                        {% endif %}
+                    </div>
+                    <div class="form-group mb-3">
+                        {{ add_form.verify_password.label(class="col-sm-2 col-form-label") }}
+                        {% if add_form.verify_password.errors %}
+                            {{ add_form.verify_password(class="form-control form-control-md col col-lg-2 is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in add_form.name.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ add_form.verify_password(class="form-control form-control-md col col-lg-2") }}
+                        {% endif %}
+                    </div>
+
                     {{ add_form.submit(class="btn btn-primary mt-2 mb-2") }}
                 </fieldset>
             </form>

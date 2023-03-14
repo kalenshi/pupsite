@@ -12,12 +12,14 @@ class Pup(db.Model):
     breed = db.Column(db.String(20), nullable=False)
     details = db.Column(db.Text(), nullable=True)
     owner_id = db.Column(db.Integer(), db.ForeignKey("member.id"), nullable=True)
+    picture = db.Column(db.String(100), nullable=True, default="default.png")
 
-    def __int__(self, name, breed, age, owner=None):
+    def __int__(self, name, breed, age, owner_id=None, picture="default.png"):
         self.name = name
         self.breed = breed
         self.age = age
-        self.owner = owner
+        self.owner_id = owner_id
+        self.picture = picture
 
     def __repr__(self):
         """

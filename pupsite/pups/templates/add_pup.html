@@ -3,7 +3,7 @@
     <div class="container">
         <article class="page-article mt-10">
 
-            <form action="" method="POST">
+            <form action="" method="POST" enctype="multipart/form-data">
                 {{ add_form.hidden_tag() }}
                 <fieldset>
                     <legend class="text-center mt-2">Create a New Pup</legend>
@@ -72,6 +72,19 @@
                             </div>
                         {% else %}
                             {{ add_form.details(class="form-control form-control-md col col-lg-2") }}
+                        {% endif %}
+                    </div>
+                    <div class="form-outline-mb4 form-group">
+                        {{ add_form.picture.label(class="col-sm-2 col-form-label") }}
+                        {% if add_form.picture.errors %}
+                            {{ add_form.picture(class="form-control-file is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in add_form.picture.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ add_form.picture(class="form-control-file") }}
                         {% endif %}
                     </div>
                     {{ add_form.submit(class="btn btn-primary mt-2 mb-2") }}

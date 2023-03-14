@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block body %}
+    <div class="container">
+        <article class="page-article">
+
+            <form action="" method="POST">
+                {{ login_form.hidden_tag() }}
+                <fieldset>
+                    <legend>Add a New Pup Owner</legend>
+
+
+                    <div class="form-group mb-3">
+                        {{ login_form.email.label(class="col-sm-2 col-form-label") }}
+                        {% if login_form.email.errors %}
+                            {{ login_form.email(class="form-control form-control-md col col-lg-2 is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in login_form.email.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ login_form.email(class="form-control form-control-md col col-lg-2") }}
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group mb-3">
+                        {{ login_form.password.label(class="col-sm-2 col-form-label") }}
+                        {% if login_form.password.errors %}
+                            {{ login_form.password(class="form-control form-control-md col col-lg-2 is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in login_form.name.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ login_form.password(class="form-control form-control-md col col-lg-2") }}
+                        {% endif %}
+                    </div>
+
+
+                    {{ login_form.submit(class="btn btn-primary mt-2 mb-2") }}
+                </fieldset>
+            </form>
+        </article>
+    </div>
+{% endblock body %}
