@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block body %}
+    <div class="container">
+        <article class="page-article">
+
+            <form action="" method="POST">
+                {{ request_form.hidden_tag() }}
+                <fieldset>
+                    <legend>Reset Password</legend>
+                    <div class="form-group mb-3">
+                        {{ request_form.email.label(class="col-sm-2 col-form-label") }}
+                        {% if request_form.email.errors %}
+                            {{ request_form.email(class="form-control form-control-md col col-lg-2 is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in request_form.email.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ request_form.email(class="form-control form-control-md col col-lg-2") }}
+                        {% endif %}
+                    </div>
+                    {{ request_form.request(class="btn btn-outline-primary ml-2") }}
+                </fieldset>
+            </form>
+        </article>
+    </div>
+{% endblock body %}

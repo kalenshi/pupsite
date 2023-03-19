@@ -7,8 +7,6 @@
                 {{ login_form.hidden_tag() }}
                 <fieldset>
                     <legend>Add a New Pup Owner</legend>
-
-
                     <div class="form-group mb-3">
                         {{ login_form.email.label(class="col-sm-2 col-form-label") }}
                         {% if login_form.email.errors %}
@@ -22,7 +20,6 @@
                             {{ login_form.email(class="form-control form-control-md col col-lg-2") }}
                         {% endif %}
                     </div>
-
                     <div class="form-group mb-3">
                         {{ login_form.password.label(class="col-sm-2 col-form-label") }}
                         {% if login_form.password.errors %}
@@ -36,11 +33,24 @@
                             {{ login_form.password(class="form-control form-control-md col col-lg-2") }}
                         {% endif %}
                     </div>
-
-
-                    {{ login_form.submit(class="btn btn-primary mt-2 mb-2") }}
+                    <div class="row form-group mb-3">
+                        <div class="col">
+                            {{ login_form.remember(class="form-check-input mt-2") }}
+                            {{ login_form.remember.label(class="form-check-label mt-1 ") }}
+                        </div>
+                        <div class="col">
+                            {{ login_form.login(class="btn btn-outline-primary ml-2") }}
+                        </div>
+                    </div>
+                    <div class="row from-group mb-3">
+                        <a href="{{ url_for('memberblueprint.add_member') }}"
+                           class="col ml-2 no-underline">Register Now</a>
+                        <a href="{{ url_for('memberblueprint.request_reset') }}"
+                           class="col  ml-2 no-underline">forgot password?</a>
+                    </div>
                 </fieldset>
             </form>
+
         </article>
     </div>
 {% endblock body %}
