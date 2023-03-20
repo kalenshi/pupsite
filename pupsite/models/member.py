@@ -14,7 +14,7 @@ def load_user(member_id):
     return db.get_or_404(Member, member_id)
 
 
-class Member(UserMixin, db.Model):
+class Member(db.Model, UserMixin):
     """
     The Model to represent the Pups on the site
     """
@@ -26,7 +26,8 @@ class Member(UserMixin, db.Model):
     password = db.Column(db.String(80), nullable=False)
     pets = db.relationship("Pup", backref="owner", lazy=True)
 
-    def __int__(self, first_name, last_name, email, password):
+    def __int__(self, first_name, last_name, email, password, *args, **kwargs):
+        super(Member, self).__init__(*args, **kwargs)
         self.first_name = first_name
         self.last_name = last_name
         self.email = email
@@ -52,7 +53,7 @@ class Member(UserMixin, db.Model):
         Returns:
             str : The hashed password
         """
-        return bcrypt.generate_password_hash(password)
+        return bcrypt.generate_password_hash(password)  # .decode("utf-8")
 
     def verify_password(self, password):
         """

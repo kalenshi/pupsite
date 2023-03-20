@@ -4,7 +4,7 @@ from pupsite import db
 from pupsite.models import Pup
 from pupsite.pups.forms.add_pup import AddPupForm
 from pupsite.pups.routes import pupsblueprint
-from pupsite.pups.utils import save_picture
+from pupsite.utils import save_picture
 
 
 @pupsblueprint.route("/pup/add", methods=["GET", "POST"])

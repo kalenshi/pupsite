@@ -1,4 +1,5 @@
 from flask import render_template, url_for, redirect, flash
+from sqlalchemy.exc import NoResultFound
 
 from pupsite import db
 from pupsite.member.forms import MemberForm
@@ -13,12 +14,22 @@ def add_member():
     """
     form = MemberForm()
     if form.validate_on_submit():
-        member = Member(
-            name=form.name.data,
-            email=form.email.data
-        )
-        db.session.add(member)
-        db.session.commit()
-        flash(f"Member Created with Email{form.email.data}", category="success")
-        return redirect(url_for("pupsblueprint.pups_list"))
+        try:
+            _ = db.session.execute(db.select(Member).filter_by(email=form.email.data)).scalar_one()
+        except NoResultFound:
+            member = Member(
+                first_name=form.first_name.data,
+                last_name=form.last_name.data,
+                email=form.email.data,
+            )
+            # Encrypt the password before adding it to the database
+
+            member.password = member.set_password(form.password.data)
+            db.session.add(member)
+            db.session.commit()
+            flash(f"Member Created with Email `{form.email.data}`", category="success")
+            return redirect(url_for("pupsblueprint.pups_list"))
+        else:
+            flash(f"The email `{form.email.data}` Is already associated with an Account", category="danger")
+
     return render_template("add_member.html", title="New member", add_form=form)
