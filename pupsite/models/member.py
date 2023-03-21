@@ -1,6 +1,11 @@
-from pupsite import db, bcrypt
-from flask_login import UserMixin, current_user
-from pupsite import db, login_manager
+from datetime import datetime, timedelta
+
+import jwt
+
+from flask import current_app
+from flask_login import UserMixin
+
+from pupsite import db, login_manager, bcrypt
 
 
 @login_manager.user_loader
@@ -55,7 +60,7 @@ class Member(db.Model, UserMixin):
         """
         return bcrypt.generate_password_hash(password)  # .decode("utf-8")
 
-    def verify_password(self, password):
+    def verify_password(self, password: str) -> bool:
         """
         Checks that the password hash provided is the right password for the member
 
@@ -67,3 +72,45 @@ class Member(db.Model, UserMixin):
 
         """
         return bcrypt.check_password_hash(self.password, password)
+
+    def get_reset_token(self, ttl: int = 1800) -> str:
+        """
+        Creates a token to use in authenticating a password rest request
+
+        Args:
+            ttl (int): Time in seconds before the token expires (time to live)
+
+        Returns:
+            str : An encoded string containing the user's ID
+
+        """
+        payload = {
+            "member_id": self.id,
+            "exp": datetime.utcnow() + timedelta(seconds=ttl)
+        }
+        token = jwt.encode(
+            payload=payload,
+            key=current_app.config.get("SECRET_KEY"),
+            algorithm="HS256"
+        )
+        return token
+
+    @staticmethod
+    def verify_reset_token(token_hash: str) -> object:
+        """
+        Verifies the identity of the user with the provided token
+        Args:
+            token_hash (str): An encoded token with user data
+
+        Returns:
+            object : An instance of the member if verified  None otherwise
+        """
+        try:
+            serialized = jwt.decode(
+                jwt=token_hash,
+                key=current_app.config.get("SECRET_KEY"),
+                algorithms=["HS256"]
+            )
+            return db.get_or_404(Member, serialized.get("member_id"))
+        except (jwt.InvalidTokenError, jwt.ExpiredSignatureError):
+            return None

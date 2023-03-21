@@ -8,7 +8,7 @@ from pupsite.member.utils.send_mail import SendMail
 from pupsite.models import Member
 
 
-@memberblueprint.route("/reset-password", methods=["GET", "POST"])
+@memberblueprint.route("/request-reset-password", methods=["GET", "POST"])
 def request_reset():
     request_form = RequestResetForm()
     if request_form.validate_on_submit():
@@ -26,7 +26,7 @@ def request_reset():
                 subject="Change your password",
                 recipients=recipients
             )
-            mailer.send_mail()
+            mailer.send_mail(token=member.get_reset_token())
             flash("Check your email for a reset link", category="success")
             return redirect(url_for("memberblueprint.login"))
     return render_template("request_reset.html", request_form=request_form)
