@@ -19,7 +19,6 @@ def save_picture_by_dimensions(form_picture, dimensions=None):
         form_picture(str) : The representation of the picture
         dimensions (tuple) : The width and height of the picture
 
-
     Returns:
         str : the location of the photo to be added to the database
     """
@@ -33,6 +32,7 @@ def save_picture_by_dimensions(form_picture, dimensions=None):
         image = Image.open(form_picture)
         image.thumbnail(size=dimensions)
         image.save(picture_full_path)
+
     except FileNotFoundError:
         filename = "default.png"
     return filename

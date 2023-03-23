@@ -20,7 +20,6 @@ def add_pup():
         picture = "default.png"
         if form.picture.data:
             picture = save_picture_by_dimensions(form.picture.data)
-
         pup = Pup(
             name=form.name.data,
             breed=form.breed.data,
