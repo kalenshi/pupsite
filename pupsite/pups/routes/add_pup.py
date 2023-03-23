@@ -4,7 +4,7 @@ from pupsite import db
 from pupsite.models import Pup
 from pupsite.pups.forms.add_pup import AddPupForm
 from pupsite.pups.routes import pupsblueprint
-from pupsite.utils import save_picture
+from pupsite.utils.save_picture import save_picture_by_dimensions
 
 
 @pupsblueprint.route("/pup/add", methods=["GET", "POST"])
@@ -16,7 +16,7 @@ def add_pup():
     if form.validate_on_submit():
         picture = "default.png"
         if form.picture.data:
-            picture = save_picture(form.picture.data)
+            picture = save_picture_by_dimensions(form.picture.data)
         pup = Pup(
             name=form.name.data,
             breed=form.breed.data,
