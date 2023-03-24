@@ -32,15 +32,21 @@
             <!-- Left links -->
             <ul class="navbar-nav mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page"
+                    <a class="nav-link {% if active_page=='home' %}active{% endif %}"
+                       aria-current="page"
                        href="{{ url_for('publicblueprint.home') }}">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="{{ url_for('pupsblueprint.add_pup') }}">Add Pup</a>
+                <li class="nav-item ">
+                    <a class="nav-link {% if active_page == 'add_pup' %}active{% endif %}"
+                       href="{{ url_for('pupsblueprint.add_pup') }}">Add Pup</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {% if request.endpoint=='pups_list' %}active{% endif %}"
+                    <a class="nav-link {% if active_page=='pups_list' %}active{% endif %}"
                        href="{{ url_for('pupsblueprint.pups_list') }}">List of Pups</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if active_page=='about' %}active{% endif %}"
+                       href="{{ url_for('publicblueprint.about') }}">About The Developer</a>
                 </li>
             </ul>
             <!-- Right links -->
@@ -52,15 +58,17 @@
                                href="{{ url_for('memberblueprint.logout') }}">Logout</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Account</a>
+                            <a class="nav-link {% if active_page == 'account' %}active{% endif %}"
+                               href="{{ url_for('memberblueprint.account') }}">Account</a>
                         </li>
                     {% else %}
                         <li class="nav-item">
-                            <a class="nav-link"
+                            <a class="nav-link {% if active_page == 'login' %}active{% endif %} no-underline"
                                href="{{ url_for('memberblueprint.login') }}">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('memberblueprint.add_member') }}">Create
+                            <a class="nav-link {% if active_page == 'create_account' %}active{% endif %} no-underline"
+                               href="{{ url_for('memberblueprint.add_member') }}">Create
                                 Account</a>
                         </li>
                     {% endif %}

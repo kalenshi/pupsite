@@ -1,4 +1,5 @@
 from flask import render_template, flash, redirect, url_for
+from flask_login import current_user
 from sqlalchemy.exc import NoResultFound
 
 from pupsite.member.forms.request_reset_form import RequestResetForm
@@ -11,6 +12,8 @@ from pupsite.models import Member
 @memberblueprint.route("/request-reset-password", methods=["GET", "POST"])
 def request_reset():
     request_form = RequestResetForm()
+    if current_user.is_authenticated:
+        return redirect(url_for("publicblueprint.home"))
     if request_form.validate_on_submit():
         try:
             member = db.session.execute(

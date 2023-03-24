@@ -14,4 +14,4 @@ def pup_page(pup_id):
         pup_id(int) : The primary key of the given Pup
     """
     pup = db.get_or_404(Pup, pup_id)
-    return render_template("pup_page.html", title=f"Pup - {pup.id}", pup=pup)
+    return render_template("pup_page.html", title=f"{pup.name}", pup=pup)

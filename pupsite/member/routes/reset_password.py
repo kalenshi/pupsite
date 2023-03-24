@@ -1,4 +1,5 @@
 from flask import render_template, flash, redirect, url_for
+from flask_login import current_user
 
 from pupsite import db
 from pupsite.member.forms.reset_password import ResetPasswordForm
@@ -9,7 +10,8 @@ from pupsite.models import Member
 @memberblueprint.route("/reset-password/<string:token>", methods=["GET", "POST"])
 def reset_password(token):
     reset_form = ResetPasswordForm()
-
+    if current_user.is_authenticated:
+        return redirect(url_for("publicblueprint.home"))
     member = Member.verify_reset_token(token)
     if not member:
         flash("The reset Token is Invalid or expired", category="warning")

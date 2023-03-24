@@ -2,6 +2,14 @@
     width: 50%;
     margin: 0 auto;
 }
-.no-underline{
+
+.no-underline {
     text-decoration: none;
+    color: white;
+}
+
+.no-underline:hover {
+    color: red;
+    text-decoration: underline;
+    text-decoration-thickness: 10%;
 }

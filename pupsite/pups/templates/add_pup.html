@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% set active_page = 'add_pup' %}
 {% block body %}
     <div class="container">
         <article class="page-article mt-10">
@@ -46,19 +47,6 @@
 
                         {% else %}
                             {{ add_form.age(class="form-control form-control-md col col-lg-2") }}
-                        {% endif %}
-                    </div>
-                    <div class="form-group">
-                        {{ add_form.owner.label(class="col-sm-2 col-form-label") }}
-                        {% if add_form.owner.errors %}
-                            {{ add_form.owner(class="form-control form-control-md col col-lg-2 is-invalid") }}
-                            <div class="invalid-feedback">
-                                {% for error in add_form.owner.errors %}
-                                    <span>{{ error }}</span>
-                                {% endfor %}
-                            </div>
-                        {% else %}
-                            {{ add_form.owner(class="form-control form-control-md col col-lg-2") }}
                         {% endif %}
                     </div>
                     <div class="form-outline-mb4 form-group">

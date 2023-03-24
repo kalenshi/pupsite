@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% set active_page = 'home' %}
 {% block body %}
     <div class="container">
         <article class="page-article">
@@ -9,11 +10,11 @@
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="{{ url_for('static', filename='images/istockphoto.jpg') }}" class="d-block w-100"
+                    <img src="{{ url_for('static', filename='images/clean_puppy.png') }}" class="d-block w-100"
                          alt="second photo">
                 </div>
                 <div class="carousel-item">
-                    <img src="{{ url_for('static', filename='images/front_cover.jpg') }}" class="d-block w-100"
+                    <img src="{{ url_for('static', filename='images/clean_bulldog.png') }}" class="d-block w-100"
                          alt="second photo">
                 </div>
                 <div class="carousel-item">

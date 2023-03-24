@@ -28,7 +28,11 @@ def login():
             if member and member.verify_password(password=login_form.password.data):
                 login_user(member)
                 next_page = request.args.get("next")
-                return redirect(next_page) if next_page else redirect(location=url_for("publicblueprint.home"))
+                return redirect(next_page) if next_page else redirect(
+                    url_for("publicblueprint.home")
+                )
             else:
-                flash("Loging unsuccessful Please check your email and or password", category="danger")
+                flash(
+                    "Loging unsuccessful Please check your email and or password", category="danger"
+                )
     return render_template("login.html", login_form=login_form)

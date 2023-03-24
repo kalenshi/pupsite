@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% set active_page='account' %}
 {% block body %}
     <div class="container">
         <article class="page-article">
@@ -49,7 +50,7 @@
                     <div class="form-group mb-3">
                         {{ add_form.verify_email.label(class="col-sm-2 col-form-label") }}
                         {% if add_form.verify_email.errors %}
-                            {{ add_form.name(class="form-control form-control-md col col-lg-2 is-invalid") }}
+                            {{ add_form.verify_email(class="form-control form-control-md col col-lg-2 is-invalid") }}
                             <div class="invalid-feedback">
                                 {% for error in add_form.verify_email.errors %}
                                     <span>{{ error }}</span>
