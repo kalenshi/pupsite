@@ -32,7 +32,6 @@ def update_pup(pup_id):
         pup.breed = update_form.breed.data
         pup.details = update_form.details.data
         pup.age = update_form.age.data
-        pup.picture = update_form.age.data
         db.session.commit()
         return redirect(url_for("pupsblueprint.pups_list"))
     elif request.method == "GET":
