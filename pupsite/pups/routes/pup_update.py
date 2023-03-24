@@ -5,7 +5,7 @@ from pupsite import db
 from pupsite.models import Pup
 from pupsite.pups.forms.pup_update import UpdatePupForm
 from pupsite.pups.routes import pupsblueprint
-from pupsite.utils.save_picture import save_picture_by_dimension
+from pupsite.utils.save_picture import save_picture_by_dimensions
 
 
 @pupsblueprint.route("/pup/<int:pup_id>/update", methods=["GET", "POST"])
@@ -28,7 +28,7 @@ def update_pup(pup_id):
         return abort(403)
     if update_form.validate_on_submit():
         if update_form.picture.data:
-            pup.picture = save_picture_by_dimension(update_form.picture.data)
+            pup.picture = save_picture_by_dimensions(update_form.picture.data)
         pup.breed = update_form.breed.data
         pup.details = update_form.details.data
         pup.age = update_form.age.data
