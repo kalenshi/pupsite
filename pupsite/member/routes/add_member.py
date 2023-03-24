@@ -28,7 +28,7 @@ def add_member():
             db.session.add(member)
             db.session.commit()
             flash(f"Member Created with Email `{form.email.data}`", category="success")
-            return redirect(url_for("pupsblueprint.pups_list"))
+            return redirect(url_for("memberblueprint.login"))
         else:
             flash(f"The email `{form.email.data}` Is already associated with an Account", category="danger")
 

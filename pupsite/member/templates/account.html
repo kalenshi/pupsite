@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% set active_page='account' %}
+{% block body %}
+    <div class="container">
+        <article class="page-article">
+            <h1>{{ member.first_name }}, {{ member.last_name }}</h1>
+
+            <div class="card mb-2">
+                <h5 class="card-header text-center">{{ member.email }}</h5>
+                <div class="card-body">
+                    <h5 class="card-title">{{ "Member since 2020 (coming soon)" }}</h5>
+                </div>
+            </div>
+        </article>
+    </div>
+{% endblock body %}

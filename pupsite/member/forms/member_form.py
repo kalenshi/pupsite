@@ -18,4 +18,4 @@ class MemberForm(FlaskForm):
     verify_password = PasswordField(
         label="Verify Password", validators=[EqualTo("password")]
     )
-    submit = SubmitField(label="Add Owner")
+    submit = SubmitField(label="Add Member")
