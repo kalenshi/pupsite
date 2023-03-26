@@ -5,7 +5,7 @@ from pupsite import db
 from pupsite.models import Pup
 from pupsite.pups.forms.pup_update import UpdatePupForm
 from pupsite.pups.routes import pupsblueprint
-from pupsite.utils.save_picture import save_picture_by_dimensions
+from pupsite.utils.picture_utils import save_picture_by_dimensions
 
 
 @pupsblueprint.route("/pup/<int:pup_id>/update", methods=["GET", "POST"])
