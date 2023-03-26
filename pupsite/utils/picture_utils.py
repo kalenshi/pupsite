@@ -2,13 +2,36 @@
 Utilities for the pups routes
 """
 
-import secrets
 import os
+import secrets
 from PIL import Image
 from flask import current_app
+from wtforms import ValidationError
 
 PICTURE_WIDTH = 200
 PICTURE_HEIGHT = 200
+
+
+def validate_picture_format(form, field):
+    """
+    Validates the file provided for picture is in any one of the acceptable
+    picture formats
+    Args:
+        form (str) : the picture string to be validated
+        field (str) : the picture string to be validated
+
+    Returns:
+        bool : True if valid False otherwise
+    Raises:
+        ValidationError : If the picture file extension is not in the allowed extensions list
+    """
+    picture_extensions = [".png", ".jpeg", ".jpg", ".gif", ".psd", ".tiff"]
+    _, ext = os.path.splitext(field.data.filename)
+    if ext.lower() not in picture_extensions:
+        raise ValidationError(
+            f"Wrong Picture extension! Allowed extentions are: {picture_extensions}"
+        )
+    return True
 
 
 def save_picture_by_dimensions(form_picture, dimensions=None):

@@ -6,7 +6,7 @@ from pupsite.models import Pup
 from pupsite.pups.forms.add_pup import AddPupForm
 from pupsite.pups.routes import pupsblueprint
 
-from pupsite.utils.save_picture import save_picture_by_dimensions
+from pupsite.utils.picture_utils import save_picture_by_dimensions
 
 
 @pupsblueprint.route("/pup/add", methods=["GET", "POST"])
