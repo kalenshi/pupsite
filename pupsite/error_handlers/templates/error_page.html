@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% set active_page = 'error_page_404' %}
+{% block body %}
+    <div class="container">
+        <article class="page-article">
+            <h1>Oh No! Pup with no home</h1>
+            <p>
+                <img src="{{ url_for('static', filename='images/notfoundpup.jpg') }}"
+                     alt="sad puppy"/>
+            </p>
+        </article>
+
+    </div>
+{% endblock body %}
