@@ -27,9 +27,11 @@ def register_blueprints(app):
     from pupsite.pups.routes import pupsblueprint
     from pupsite.public.routes import publicblueprint
     from pupsite.member.routes import memberblueprint
+    from pupsite.error_handlers.routes import error_blueprint
     app.register_blueprint(pupsblueprint)
     app.register_blueprint(publicblueprint)
     app.register_blueprint(memberblueprint)
+    app.register_blueprint(error_blueprint)
 
 
 def register_extensions(app):
