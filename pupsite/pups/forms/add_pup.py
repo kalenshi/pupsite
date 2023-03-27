@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import (SubmitField, StringField, IntegerField, TextAreaField, FileField)
-from wtforms.validators import Length, NumberRange, DataRequired, ValidationError
+from wtforms.validators import Length, NumberRange, DataRequired
 
 from pupsite.utils.picture_utils import validate_picture_format
 

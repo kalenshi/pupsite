@@ -1,11 +1,11 @@
 {% extends "base.html" %}
-{% set active_page = 'error_page_404' %}
+{% set active_page = 'error_page_403' %}
 {% block body %}
     <div class="container">
         <article class="page-article">
-            <h1>Oh No! Pup with no home</h1>
+            <h1>Looks like you Don't have the right Permission!</h1>
             <p>
-                <img src="{{ url_for('static', filename='images/notfoundpup.jpg') }}"
+                <img src="{{ url_for('static', filename='images/beware.jpg') }}"
                      alt="sad puppy"/>
             </p>
         </article>
