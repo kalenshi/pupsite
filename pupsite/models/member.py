@@ -32,7 +32,6 @@ class Member(db.Model, UserMixin):
     pets = db.relationship("Pup", backref="owner", lazy=True)
 
     def __int__(self, first_name, last_name, email, password, *args, **kwargs):
-        super(Member, self).__init__(*args, **kwargs)
         self.first_name = first_name
         self.last_name = last_name
         self.email = email

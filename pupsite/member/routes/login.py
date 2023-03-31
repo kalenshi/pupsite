@@ -18,6 +18,7 @@ def login():
     if current_user.is_authenticated:
         return redirect(url_for("publicblueprint.home"))
     if login_form.validate_on_submit():
+        remember = login_form.remember.data or False
         try:
             member = db.session.execute(
                 db.select(Member).filter_by(email=login_form.email.data)
@@ -26,7 +27,7 @@ def login():
             flash("Loging unsuccessful Please check your email and or password", category="danger")
         else:
             if member and member.verify_password(password=login_form.password.data):
-                login_user(member, remember=login_form.remember)
+                login_user(member, remember=remember)
                 next_page = request.args.get("next")
                 return redirect(next_page) if next_page else redirect(
                     url_for("publicblueprint.home")

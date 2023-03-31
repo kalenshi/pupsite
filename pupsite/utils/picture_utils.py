@@ -27,6 +27,8 @@ def validate_picture_format(form, field):
     """
     picture_extensions = [".png", ".jpeg", ".jpg", ".gif", ".psd", ".tiff"]
     _, ext = os.path.splitext(field.data.filename)
+    if not field.data:
+        return True
     if ext.lower() not in picture_extensions:
         raise ValidationError(
             f"Wrong Picture extension! Allowed extentions are: {picture_extensions}"

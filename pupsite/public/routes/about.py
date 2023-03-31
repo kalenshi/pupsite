@@ -1,4 +1,4 @@
-from flask import redirect, render_template
+from flask import render_template
 
 from pupsite.public.routes import publicblueprint
 

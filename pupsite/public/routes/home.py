@@ -3,6 +3,7 @@ from pupsite.public.routes import publicblueprint
 
 
 @publicblueprint.route("/", methods=["GET"])
+@publicblueprint.route("/home", methods=["GET"])
 def home():
     """
     View for the home page of the pup site
