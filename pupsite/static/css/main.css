@@ -13,10 +13,7 @@
     text-decoration: underline;
     text-decoration-thickness: 10%;
 }
-/*.front-img{*/
-/*    max-height: 70%;*/
-/*    max-width: 80%;*/
-/*    height: 50%;*/
-/*    width: 50%;*/
-/*    position: center;*/
-/*}*/
+.login-links{
+    text-decoration:none;
+    font-weight: bold;
+}
